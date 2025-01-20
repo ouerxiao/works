@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+{% block body %}
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item "><a href="#"></a>Post related：</li>
+</ol>
+
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} 
+    <script>
+    $( function() {
+      $( "#accordion" ).accordion();
+    } );
+    </script>
+{% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+{% block body %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'faq' %}">FAQ:</a> </li>
+</ol>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div id="accordion">
+                {% for rs in faq %}
+                <h3>{{ rs.question }}</h3>
+                <div>
+                    <p>
+                        {{ rs.answer | safe}}
+                    </p>
+                </div>
+                {% endfor %}        
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %} {% include "footer.html" %} {% endblock %}
+    

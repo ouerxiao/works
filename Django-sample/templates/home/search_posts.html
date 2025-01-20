@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ query }} results {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+{% block body %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active"> 
+            Search：{{ query }}
+    </li>
+</ol>
+  <div class="section">
+    <div class="container">
+        <div class="row">
+	    {% if posts %}
+	        {% include "blog/post_list.html" %}
+	    {% else %}
+            <div class="col-md-3"> </div>
+	    <div class="col-md-9"> 
+               <div class="profile-details">
+                    <div class="section-title">
+		        <h3 class="title">Hmmm, we didn't find anything for "{{ query }}"</h3>
+		        <a href="/"><p class="text-xs-center">Try a different search term </p><a>
+                        <br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>	
+	</div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %} {% include "footer.html" %} {% endblock %}   

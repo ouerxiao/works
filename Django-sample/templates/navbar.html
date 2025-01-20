@@ -1,0 +1,104 @@
+{% load mptt_tags %}
+{% load static %}
+<header>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img src="{% static '/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+            Oyehaha
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <div class="category-nav show-on-click">
+                    {% if user.id is not None %}
+                    <li class="nav-item">
+                        <a href="{% url 'user' %}">
+                            <img src="{{ user.userprofile.avatar.url }}" style="height: 30px; border-radius: 50%;"
+                            alt="profile image">
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.first_name }}</a>   
+                        <ul style="list-style-type:none" class="dropdown-menu mt-2 rounded-0 white border-0 z-depth-1">
+                            <li class="dropdown-item"><a href="{% url 'user' %}">My account</a></li>
+                            <li class="dropdown-item"><a href="{% url 'user_bookmarks' %}">My bookmark</a></li>
+                            <li class="dropdown-item"><a href="{% url 'user_comments' %}">My comments</a></li>
+                            <li class="dropdown-item"><a href="{% url 'logout' %}">log out</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'login' %}">Login</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                    </li>
+                {% endif %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Blog
+                        </a>             
+                        <ul style="list-style-type:none" class="dropdown-menu mt-2 rounded-0 white border-0 z-depth-1" >
+                            {% recursetree category %}
+                            <li class="dropdown-item dropdown-submenu p-0" >
+                                <a href="/category/{{ node.id }}/{{ node.slug }}"{% if not node.is_leaf_node %} data-toggle="dropdown"
+                                    class="dropdown-toggle dropdown-item w-100"{% endif %}>{{ node.name }} </a>
+                                {% if not node.is_leaf_node %}
+                                <ul class="dropdown-menu p-0" >
+                                    {{ children }}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endrecursetree %}
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'image' %}">Image</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'video' %}">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </div>
+            </ul>
+            <script>
+                $(function () {
+                    $("#query").autocomplete({
+                        source: "/search_auto/",
+                        select: function (event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui)
+                        },
+                        minLength: 2,
+                    });
+                });
+                function AutoCompleteSelectHandler(event, ui) {
+                    var selectedObj = ui.item;
+                }
+            </script>
+            <form class="form-inline my-2 my-lg-0" , action='/search/' method='POST'>
+                {% csrf_token %}
+                <input name='query' id='query' class="form-control mr-sm-2" type="search" placeholder="search"
+                    aria-label="Search">
+                <select name="catid" id='catid' class='input search-categories'>
+                    <option value="0">All</option>
+                    {% for rs in category %}
+                    <option value="{{rs.id}}">{{rs.name}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load mptt_tags %}
+
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+{% block slider %} {% include "slider.html" %} {% endblock %}
+
+{% block body %} {% include "blog/post_list.html" %} {% endblock %}
+{% block footer %} {% include "footer.html" %} {% endblock %}

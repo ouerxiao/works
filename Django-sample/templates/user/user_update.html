@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %} User Profiles {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+{% block body %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'user_update' %}">
+            Profiles update：</a></li>
+</ol>
+    
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% include 'user/user_panel.html' %}
+    
+                </div>    
+                <div class="col-md-9">
+                    <div class="profile-details">
+                        <div class="section-title">
+                            <h3 class="title"> </h3>
+                        </div>
+                    </div>
+                    <div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div style="color:tomato; font-size:medium">
+                                    {{ message | safe}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                   <form method="POST" enctype="multipart/form-data" action="">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ user_form.as_p }}
+                            {{ profile_form.as_p }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn-primary" type='submit'>Update profiles</button>
+                        </div>
+                   </form>
+                </div>    
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock %}

@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ post.title }} {% endblock %}
+{% block desctiption %} {{ post.description}} {% endblock %}
+{% block keywords %} {{ post.keywords }} {% endblock %}
+
+{% block head %} 
+    <script>
+    $( function() {
+      $( "#accordion" ).accordion();
+    } );
+    </script>
+{% endblock %}
+
+{% block navbar %} {% include 'navbar.html' %} {% endblock %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" >
+        <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
+    </li>
+    <li class="breadcrumb-item "><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+</ol>
+
+<div class="row" id="intro">
+    <div class="col-md-8">
+        <div class="view view-cascade overlay">
+            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap" onclick="window.open(this.src)">
+        </div>
+        <div class="card-body card-body-cascade text-center">
+            <h2><a><strong>{{ post.title }}</strong></a></h2>
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-6 col-6">
+                <div class="d-flex" >
+                    <img src="{{ post.author.userprofile.avatar.url }}" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+                    <div>
+                        <h4 class="card-title font-weight-bold mb-2" style="font-size: medium;">
+                            <a href="{% url 'about' %}">{{ post.author }}</a></h4>
+                        <p class="card-text" style="font-size:small;"><i class="far fa-clock pr-2"></i>{{ post.updated_on|date:'d M Y' }}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-6 text-md-right">
+                <div class="d-flex ">
+                    <a class="qq-ic " href="#">
+                        <i class="fab fa-qq grey-text mr-3"></i>
+                    </a>
+                    <a class="wx-ic " href="#">
+                        <i class="fab fa-weixin grey-text mr-3"></i>
+                    </a>
+                    <a class="wb-ic " href="#">
+                        <i class="fab fa-weibo grey-text mr-3"></i>
+                    </a>
+                    <form action="{% url 'bookmark-post' post.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if is_bookmark %}
+                        <button class="btn-md btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.id }}">    
+                            <i class="fas fa-bookmark text-muted mr-4"></i>
+                        </button>
+                        {% else %}
+                        <button class="btn-md btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.id }}">    
+                            <i class="far fa-bookmark text-muted mr-4"> </i>
+                        </button>
+                        {% endif %}
+                    </form>
+    
+                </div>
+            </div>
+        </div>
+
+        <div class="excerpt mt-5 wow fadeIn" data-wow-delay="0.3s">
+            <p>{{ post.body|safe }}</p>
+        </div>
+        <div class="row d-flex mb-2">
+            <div class="col-md-6 col-6 d-flex">
+                    <form action="{% url 'like-post' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        {% if is_liked %}
+                        <button class="btn-sm btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.pk }}">    
+                            <i class="fas fa-heart text-muted mr-2">{{ total_likes}} Likes</i>
+                        </button>
+                        {% else %}
+                        <button class="btn-sm btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.pk }}">    
+                            <i class="far fa-heart text-muted mr-2 ">{{ total_likes}} Likes</i>
+                        </button>
+                        {% endif %}
+                    </form>
+                    <button class="btn-sm btn-link" style="border:none">
+                        <a href="#comment-form"><i class="fab fa-rocketchat text-muted mr-2"> comments</i></a>
+                    </button>
+            </div>                
+            <div class="col-md-6 col-6 text-md-right">
+                <a class="ins-ic " href="#">
+                    <i class="fab fa-instagram grey-text mr-3"></i>
+                </a>
+                <a class="qq-ic " href="#">
+                    <i class="fab fa-qq grey-text mr-3"></i>
+                </a>
+                <a class="wx-ic " href="#">
+                    <i class="fab fa-weixin grey-text mr-3"></i>
+                </a>
+                <a class="wb-ic " href="#">
+                    <i class="fab fa-weibo grey-text mr-3"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" id="aside">
+        <aside class="position-fixed">
+            <ul class="list-group-flush ">
+                <li class="list-group-item">
+                    <div class="dropdown">
+                        <button class="btn-lg btn-link" style="border:none" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top"
+                        title="Share this post">  Subscribe </i></button>
+                        <div class="dropdown-menu dropdown-primary" style="background-color:steelblue">
+                            <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">
+                                <i class="fab fa-facebook-f white-text mr-4"></i>facebook
+                            </a>
+                            <a class="dropdown-item" href="http://twitter.com/intent/tweet/?url={{request.build_absolute_uri}}">
+                                <i class="fab fa-twitter white-text mr-4"></i>twitter
+                            </a>
+                        
+                            <a class="dropdown-item" href="#">
+                                <i class="fab fa-weibo white-text mr-4"></i>微博
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item" >
+                    <button class="btn-lg btn-link" style="border:none"><a href="#comment-form"><i class="fab fa-rocketchat text-muted float-right p-1 my-1"> Comments</i></a></button>
+                </li>
+
+
+                <li class="list-group-item" id='like-section'>
+                    <form action="{% url 'like-post' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        {% if is_liked %}
+                        <button class="btn-lg btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.pk }}">    
+                            <i class="fas fa-heart text-muted float-right p-1 my-1">{{ total_likes}} Likes </i>
+                        </button>
+                        {% else %}
+                        <button class="btn-lg btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.pk }}">    
+                            <i class="far fa-heart text-muted float-right p-1 my-1">{{ total_likes}} Likes </i>
+                        </button>
+                        {% endif %}
+                    </form>
+                </li>
+                <li class="list-group-item" id='bookmark-section'>
+                    <form action="{% url 'bookmark-post' post.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if is_bookmark %}
+                        <button class="btn-lg btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.id }}">    
+                            <i class="fas fa-bookmark text-muted float-right p-1 my-1"> Bookmark History </i>
+                        </button>
+                        {% else %}
+                        <button class="btn-lg btn-link"  style="border:none" type="submit" name="post_id" value="{{ post.id }}">    
+                            <i class="far fa-bookmark text-muted float-right p-1 my-1"> Bookmarks </i>
+                        </button>
+                        {% endif %}
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button class="btn-lg btn-link" style="border:none" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-hand-point-right text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top"
+                    title="I like it"> Related articles</i></button>
+
+                    <div class="dropdown-menu dropdown-primary" >
+                        <a class="dropdown-item" href="#">
+                            <article>
+                                <h3>Related article</h3>
+                                <p>Article description</p>
+                            </article>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <article>
+                                <h3>Related article</h3>
+                                <p>Article description</p>
+                            </article>
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <h1></h1>
+                    <p><a href="#intro" style="color: black;"> Top page</a></p>
+                    <p><a href="#comments" style="color: black;"> Comments </a></p>
+                    <p><a href="#comment-form" style="color: black;"> I want to comment </a></p>
+                </li>
+            </ul>
+        </aside>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8" id="login">
+        <div class="page-header">           
+            <ul class="media-list">
+            {% for rs in comments %}
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile">
+                </a>
+                <div class="media-body">
+                  <div class="well well-lg">
+                      <h4 class="media-heading text-uppercase reviews">{{ rs.user.first_name}}</h4>
+                      <ul class="media-date text-uppercase reviews list-inline">
+                        <li class="dd">{{ rs.created_at }}</li>
+                      </ul>
+                      <p class="media-comment">
+                        {{ rs.comment }}
+                      </p>
+                      <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                      <a class="btn btn-warning btn-circle text-uppercase"  data-toggle="collapse" href="#replyThree"><span class="glyphicon glyphicon-comment"></span> 1 comment</a>                         
+                  </div>              
+                </div>
+                {% if rs.children %}
+                <div class="collapse" id="replyThree">
+                            <ul class="media-list">
+                                {% for reply in rs.children.all %} 
+                                <li class="media media-replied">
+                                    <a class="pull-left" href="#">
+                                      <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/128.jpg" alt="profile">
+                                    </a>
+                                    <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> {{ reply.user.first_name }}</h4>
+                                          <ul class="media-date text-uppercase reviews list-inline">
+                                            <li class="dd"> {{ reply.created_at }}</li>
+                                          </ul>
+                                          <p class="media-comment">
+                                            {{ reply.comment }} 
+                                          </p>
+                                          <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                      </div>              
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>  
+                </div>
+                {% endif %}
+              </li>    
+            {% endfor %}        
+            </ul> 
+        </div>
+    </div>
+  </div>
+
+
+<!--Comments-->
+<div class="row" id="comments">
+    <div class="col-md-8">
+        <div class="card card-comments mb-3 wow fadeIn">
+            <div class="card-header font-weight-bold"> Comment Board </div>
+            <div class="card-body">
+                {% for rs in comments %}
+                <div class="media d-block d-md-flex mt-4">
+
+                    <img class="d-flex mb-3" src="{{rs.user.userprofile.avatar.url}}"
+                        height=80px weight=50px alt="Generic placeholder image">
+                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                        <h5 class="mt-0 font-weight-bold">{{ rs.user.first_name }}
+                            <button type="button" class="btn" data-target="#quick-reply{{rs.id}}" data-toggle="modal" name="button"><i class="fa fa-reply"></i></button>
+                            <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replied"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                                <div class="modal fade" id="quick-reply{{rs.id}}">
+                                    <div class="modal-body">
+                                        {% block quickReply %}
+                                        {% include 'blog/post_comment_form.html' %}
+                                        {% endblock %}
+                                    </div>
+                                    <div class='modal-footer'><button type='button' class="btn btn-default" data-dismiss='modal'>Close</button></div>
+                                </div>
+                        </h5>
+                        <div><a href="#"><i class="fa fa-user-o"></i> {{ rs.created_at }}</a></div>
+                        {{ rs.comment }}
+                    
+                    <div class="collapse" id="replied">
+                        <ul class="media-list">
+                            {% if rs.children %}
+
+                            {% for reply in rs.children.all %}
+                            <li class="media">
+                                <img class=" media-object d-flex mb-3" src="{reply.user.userprofile.avatar.url}}"
+                                height= 80px weight=50px alt="Generic placeholder image">
+                            <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                <h5 class="mt-0 font-weight-bold"> {{ reply.user.first_name }}
+                                </h5>
+                                <div><a><i class="fa fa-user-o"></i> {{ reply.created_at }} </a></div>
+                                 <p class="media-comment">
+                                    {{ reply.comment }} 
+                                 </p>
+                            </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="comment-form">
+        {% block comment %}
+        {% include 'blog/post_comment_form.html' %}
+        {% endblock %}
+</div>
+
+{% endblock %}
+{% block footer %} {% include 'footer_white.html' %} {% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% load embed_video_tags %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+{% block body %}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item "><a href="{% url 'video' %}"> Video：</a></li>
+</ol>
+
+<div class="row">
+{% for youtube in posts %}
+    {% video youtube.video as my_video %}
+    <div class="col-lg-4 col-md-6 mb-4">
+  
+      <div class="modal fade" id="modal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+  
+            <div class="modal-body mb-0 p-0">
+  
+              <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                <iframe class="embed-responsive-item" src="{{ my_video.url }}"
+                  allowfullscreen></iframe>
+              </div>
+  
+            </div>
+  
+            <div class="modal-footer justify-content-center">
+              <span class="mr-4"> share：</span>
+              <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+              <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+              <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+              <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+              <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">close</button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+
+      <a><img class="img-fluid z-depth-1" src="{{ my_video.thumbnail }}" alt="video"
+          data-toggle="modal" data-target="#modal{{ forloop.counter }}"></a>
+      <div class="card-body d-flex flex-row">
+            <a href="{{ youtube.post.get_absolute_url }}">
+                <img src="{{ youtube.post.symbol.url }}" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+            </a>
+            <div>
+            
+            <h6 class="card-title font-weight-bold mb-2">
+                <a href="{{ youtube.post.get_absolute_url}}">{{ youtube.post.title }}</a></h6>
+            <p class="card-text"><i class="far fa-clock pr-2"></i>{{ youtube.post.updated_on|date:'m/d/Y' }}</p>
+            
+            </div>
+        </div>
+    </div>
+    {% endvideo %}
+{% endfor %}
+</div>
+
+
+{% if posts.has_other_pages %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination pagination-circle pg-blue">
+        <li class="page-item "><a class="page-link" href="?page=1">First page</a></li>
+        <li class="page-item ">
+            {% if posts.has_previous %}
+            <a class="page-link" aria-label="Previous" href="?page={{ posts.previous_page_number }}">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">prev</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for num in posts.paginator.page_range %}
+        {% if posts.number == num %}
+        <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {%  if posts.has_next %}
+        <li class="page-item">
+            <a class="page-link" aria-label="Next" href="?page={{ posts.next_page_number }}">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">next</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page= {{ posts.paginator.num_pages }}">Last page</a></li>
+    </ul>
+    {% endif %}
+</nav>
+{% endif %}
+
+
+{% endblock %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+{% block body %}
+
+<section>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>  
+            <li class="breadcrumb-item active"><a href="{{query.get_absolute_url}}">{{ query }}</a></li>
+    </ol>
+
+    {% if posts %}
+        {% include 'blog/post_list.html' %}
+    {% else %}
+        <a href="/"><h1 class="text-center">Comming soon... </h1></a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    {% endif %}
+</section>
+
+{% endblock %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock %}
+
+

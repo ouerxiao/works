@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} User Sign Up {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+
+
+{% block body %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home </a></li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'signup' %}">
+            Signup：</a></li>
+</ol>
+
+
+    <div class="section">
+        <div class="container">
+            <div class="row">  
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div style="color:tomato; font-size:medium">
+                                {{ message | safe}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+    
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p>
+                            {{ field.label_tag }} <br>
+                            {{ field }}
+    
+                            {% if field.help_text %}
+                                <small style="color: black;"> {{ field.help_text }}</small>
+                            {% endif %}
+    
+                            {% for error in field.errors %}
+                                <p style="color: crimson;">{{ error }}</p>
+                            {% endfor %}
+                        </p>
+                    {% endfor %}
+		    <button type="submit">Create an Account</button>
+                    <br>
+                    <br>
+		    <a href="{% url 'login' %}">>>>> Sign In</a>
+                    <br>
+                    <br>
+		    <a href="{% url 'password_reset' %}">>>>> Forgot password?!</a>
+                    <br>
+                    <br>
+		    <br>
+		    <br>
+		    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %} {% include 'footer.html' %} {% endblock %}

@@ -1,0 +1,39 @@
+
+
+    <div class="col-md-8">
+        <div class="card mb-3 wow fadeIn">
+            <div class="card-header font-weight-bold">Comments：</div>
+            <div class="card-body">
+                {% if messages %}
+                {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}' role='alert'>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %} 
+                <form action="/blog/addcomment/{{ post.id }}" class="comment-form" id="comment-form" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="parent_id" value="{{ rs.id }}">
+                    <div class="form-group">
+                        <label for="replyFormComment">Content</label>
+                        <textarea name="comment" class="form-control" rows="5"></textarea>
+                    </div>
+        
+                    <label for="replyFormName">Subject</label>
+                    <input name='subject' type="text" class="form-control">
+        
+                    <br>
+                    <div class="text-center mt-4">
+                        {% if user.id is not None %}
+                        <button class="btn btn-info btn-md" type="submit">Submit</button>
+                        {% else %}
+                        <p>
+                            Please <a href="/login">Login</a>
+                            or <a href="/signup">Signup</a>
+                        </p>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>

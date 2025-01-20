@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %} User Profile {{ setting.title }} {% endblock %}
+{% block desctiption %} {{ setting.description}} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block navbar %} {% include "navbar.html" %} {% endblock %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'user_comments' %}">
+            My comments：</a></li>
+</ol>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% include 'user/user_panel.html' %}
+    
+                </div>    
+                <div class="col-md-9">
+                    <div class="profile-details">
+                        <div class="section-title">
+                            <h3 class="title">My comments：</h3>
+                        </div>
+                    </div>
+    
+    {% if comments %}                   
+                    <table class="shopping-chart-table table">
+                        <tr>
+                            <th class="text-left">Blog</th>
+                            <th class="text-left">Subject</th>
+                            <th class="text-left">Content</th>
+                            <th class="text-left">Status</th>
+                            <th class="text-left">Date</th>
+                            <th class="text-left"></th>
+                        </tr>
+                        {% for rs in comments %}
+                            <tr>
+                                <td class="text-left">
+                                    <a href="{% url 'post-detail' rs.post.id rs.post.slug %}">
+                                        <strong>{{ rs.post.title }}</strong>
+                                    </a>
+                                </td>
+                                <td class="text-left">{{ rs.subject }}</td>
+                                <td class="text-left">{{ rs.comment }}</td>
+                                <td class="text-left">{{ rs.status }}</td>
+                                <td class="text-left">{{ rs.created_at }}</td>
+                                <td class="text-left">
+                                    <a href="{% url 'user_deletecomments' rs.id %}" class="btn btn-danger" onclick="return confirm('Do you want to DELETE?')">delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+		    <br>
+		    <br>
+		    <br>
+		    <br>
+		    <br>
+                </div>    
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <a href="/"><p class="text-center">Nothing here yet~~~</p></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% endif %}
+{% endblock %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock %}
