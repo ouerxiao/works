@@ -7,12 +7,11 @@
 
 <h1> Introduction</h1> 
 <b> JP Morgan Chase </b>
-<p>technology team at JP Morgan Chase & Co. Fast track to the tech team with your work.</p>
+<p>technology team at JP Morgan Chase & Co</p>
 
 
 <h2 id="task"> Task Overview </h2>
-<p>Use JP Morgan Chase's frameworks and tools Implement JP Morgan Chase’s Perspective open source code in preparation for data visualization</p>
-<p> <b>Aim:</b>Take an incomplete setup of Perspective, i.e. a graph that updates manually, and make it work with the code from Task 1 such that it now updates automatically by continuously requesting from the server application</p>
+<p>Use JP Morgan Chase's frameworks and tools Implementdata visualization</p>
 
 <ol>
 	<li>[goal-a] In the client application, observe that when new data feed is retrieved whenever you click the 'Start Streaming Data' button, the previous entry is re-entered into the table. Update the application so that the table does not have duplicated entries</li>
@@ -22,8 +21,6 @@
 
 <h2 id="task"> Task Overview </h2>
 Display data visually for traders.
-Use Perspective to create the chart for the trader’s dashboard.
-
 <b>Aim:</b> Use Perspective to generate a chart that displays the data feed in a clear and visually appealing manner for traders to monitor this trading strategy. Basically, you have to modify the existing live chart to be able to (1) track and display the ratio between the two stock prices (2) show the historical upper and lower bounds of the stocks' ratio (3) and finally, show 'alerts'  whenever these bounds are crossed by the ratio.
 
 <ol>
