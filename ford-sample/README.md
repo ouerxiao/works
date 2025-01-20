@@ -4,7 +4,7 @@ Backend infrastructure for Ford's sensor streaming system. This codebase contain
  * Developed a backend to stream engine temperature sensor readings from cars to mobile phones.
  * Connected a Flask server to a Redis instance using Docker Compose.
 
-# Task 1
+# Task
 Help Ford create a collection of backend services for a new system the company is developing.
 
 ## Project briefing
@@ -120,7 +120,7 @@ Lets talk about entrypoint.py:
     - Then, we open up a connection to the Redis database, which is running in a different container.
     - We are storing engine temperature readings in a Redis list, keeping track of the 10 most recent values, and discarding old ones as new ones appear.
     - The methods used to implement the above behavior are discussed here: https://redis.io/docs/data-types/lists.
-- Restart your Docker Compose stack, and ensure both services produce logs similar to last time.
+- Restart Docker Compose stack, and ensure both services produce logs similar to last time.
 - Submit a POST request to your flask server at http://0.0.0.0:8000/record, and include a JSON payload with the following data: {"engine_temperature": 0.3}.
     - There are a variety of ways to accomplish this, three of which are described below:
         - Use the Python requests library in a scratch file like so: 
@@ -131,7 +131,7 @@ Lets talk about entrypoint.py:
     - Additionally, there should be some new logs in your console with each new request.
 - When you are finished, commit and push your changes to your project GitHub repo and submit a link below.
 
-# Task 4: Additional endpoints
+# Additional endpoints:
 - Implement an endpoint in a Flask application.
 - Aggregate data from a Redis instance.
 
