@@ -11,7 +11,7 @@
 
 
 <h2 id="task"> Task Overview </h2>
-<p>Use JP Morgan Chase's frameworks and tools Implementdata visualization</p>
+<p>Use JP Morgan Chase's frameworks and tools Implement data visualization</p>
 
 <ol>
 	<li>[goal-a] In the client application, observe that when new data feed is retrieved whenever you click the 'Start Streaming Data' button, the previous entry is re-entered into the table. Update the application so that the table does not have duplicated entries</li>
