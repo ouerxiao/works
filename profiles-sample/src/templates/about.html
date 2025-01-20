@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <title>I'm Xiao Chen</title>
+    <meta name="description" content="about Xiao Chen">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-white bg-white fixed-bottom">
+        <a class="navbar-brand black-text" href="{{ url_for('about')}}"> About
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link black-text" href="#connect">Connect <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link black-text" href="#timeline">Portfolio</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="view">
+        <img src="{{ url_for('static', filename='images/selfi.jpg') }}" class="img-fluid" alt="selfie">
+        <div class="mask flex-center waves-effect waves-light rgba-white-light">
+            <p class="white-text cap">Hi, I'm<br>— Xiao Chen —</p>
+        </div>
+    </div>
+
+
+    <section class="projects-section bg-white" id="projects">
+        <div class="container">
+            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h2 class="section-heading">— My journey —</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{{ url_for('static', filename='images/cs.jpg') }}"
+                        alt="computer science" /></div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4 class="text-heading">Self Teaching</h4>
+                        <h6 class="text-date">CS & Engineer, since 2018</h6>
+                        <h6 class="text-location">New York, NY</h6>
+                        <p class="text-black-50 mb-0">I'm not only took CS & engineer curriculums from MIT
+                            OpenCourseWare , but also took Python related tutorial.
+                            <br><br>Understanding of the data strucutre, algorithm and computation structure are
+                            important when it come to optimization. As well as, the use of different softwares.
+                            <br><br>Currently, I'm working on <a href="#timeline">individual projects<a>, such as, web
+                                    application and machine learning. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6"><img class="img-fluid" src="{{ url_for('static', filename='images/school.jpg') }}" alt="SUNY New Paltz" />
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-heading">SUNY New Paltz</h4>
+                                <h6 class="text-date">B.S. in Biology | Minor: Math, earned May 2017<h6>
+                                        <h6 class="text-location">New Paltz, NY<h6>
+                                                <p class="mb-0 text-black-50">My four years of phenomenal professors
+                                                    across the disciplines pushed me to expand, challenge, and adjust my
+                                                    worldview.
+                                                    <br><br>Science is fun, but the strategy makes it come true.
+                                                    Obsessed with numbers and solutions eventually take me to
+                                                    programming.
+                                                </p>
+                                                <hr class="d-none d-lg-block mb-0 ml-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6"><img class="img-fluid" src="{{ url_for('static', filename='images/time.jpg') }}" alt="time" />
+                </div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-heading">become One</h4>
+                                <h6 class="text-date">Present</h6>
+                                <h6 class="text-location"></h6>
+                                <p class="mb-0 text-black-50">
+                                <ul>
+                                    " Like a child become one year old with the exciment of discovering everything about
+                                    the world.
+                                    <br>
+                                    Whatever I take on become one the frist best excel drive myself to perfection for
+                                    every of my tasks.
+                                    <br>
+                                    When people are separated become one come together learn to understand each other. "
+                                    </p>
+                                </ul>
+                                <hr class="d-none d-lg-block mb-0 mr-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section bg-white" id="portfolio">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">— My Skill —</h2>
+                <h3 class="section-subheading text-muted">learn everyday</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="https://www.python.org/">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{ url_for('static', filename='images/python.jpg') }}" alt="python" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Python</div>
+                            <div class="portfolio-caption-subheading text-muted">My primary interpreted language, with
+                                understanding of C.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="https://www.fullstackpython.com/web-development.html">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{ url_for('static', filename='images/web.jpg') }}"alt="web development" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Web Dev</div>
+                            <div class="portfolio-caption-subheading text-muted"> Create responsive and dynamic web, use
+                                frameworks and databases, ex, Django, flask, Mysql, and etc.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link"
+                            href="https://expertsystem.com/machine-learning-definition/#:~:text=Machine%20learning%20is%20an%20application,use%20it%20learn%20for%20themselves.">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{ url_for('static', filename='images/ml.jpg') }}" alt="machine learning" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Machine learning</div>
+                            <div class="portfolio-caption-subheading text-muted">Working on matplotlib, numpy, pandas,
+                                opencv, scikit-learn, keras, and TensorFlow. </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="page-section" id="timeline">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">— My portfolio —</h2>
+                <h6 class="section-subheading text-muted">To be continued...</h6>
+            </div>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid"
+                            src="{{ url_for('static', filename='images/roboteye.png') }}" alt="robotic eye " /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Sept 2020</h4>
+                            <h4 class="subheading">License Plate Recognition</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">A plate recognition system that understands license plate. Using the pre-trained Wpod-Net model to detect and extract license plates of vehicles images. Using the pre-trained MobileNet model to predict the characters in the extracted image.
+                                <br><br>Extracting license plate image, and then convert to grayscale and blur the image, apply inversed thresh_binary, apply dilation, and apply contours as the preprocessing techniques. 
+                                Then, predict the characters on the image using MobileNet.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{ url_for('static', filename='images/voice.png') }}"
+                            alt="sound wave" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Sept 2020</h4>
+                            <h4 class="subheading">Speech Recognition</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">A speech recognition system that understands simple spoken commands.
+                                <br><br>
+                                With 30 commands, and ~60,000 files. Implementing model using conv1d, and then train model on a batch
+                                size of 32 with 100 epoch. End up with 89% train accuracy, and 83% test accuracy. Saving the best model after every epoch as the validation data for prediction.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{ url_for('static', filename='images/web01.png') }}"
+                            alt="website" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>Aug 2020</h4>
+                            <h4 class="subheading">Dynamic Blog Website</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">After the comparison among SQL, NoSQL, Django, flask, MEAN, AWP, and
+                                PWA, I start to implement the MVC web application using bootstrap as the front-end,
+                                Django as the backend with Mysql database.
+                                <br><br>The primary goal is to make it work first with the APIs, such as, user
+                                authentication, user profile, user bookmark, and the comments.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image"><img class="rounded-circle img-fluid"
+                            src="{{ url_for('static', filename='images/performance.png') }}" alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4>July 2018</h4>
+                            <h4 class="subheading">WordPress is Slow</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">It's a travel blog, primary about the images and personal articles.
+                                All the content was generated by the coded plugin.
+                                <br><br> It has slow performance and low security system, but nice UI. Eager for better
+                                performance pushed me to the web development fields.
+                                <br><br> To get a better performance, it always about the tradeoff and depends on the
+                                situations.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>
+                            <br />
+                            Adventure
+                            <br />
+                            start!
+                        </h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="game-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-3">
+                    <img src="{{ url_for('static', filename='images/game.jpg') }}"
+                        class="img-fluid z-depth-1" alt="pokemon">
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <img src="{{ url_for('static', filename='images/LOL.jpg') }}"
+                        class="img-fluid z-depth-1" alt="league of legend">
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <img src="{{ url_for('static', filename='images/wang.jpg') }}"
+                        class="img-fluid z-depth-1" alt="Arena Of Valor">
+                </div>
+            </div>
+    </section>
+
+
+    <footer class="page-footer font-small" id="connect">
+        <div class="container">
+            <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+                <h2 class="section-heading grey-text">— Being an esport gamer —</h2>
+                <div class="col-md-8 col-12 mt-5">
+                    <h6 class="font-weight-bold black-text" style="font-size: large;">
+                        <a>Use multi-agent self-play to explore naturally emerging social behaviors as a way to study equivalent multi-human systems.</a>
+                    </h6>
+                </div>
+            </div>
+            
+            <hr class="rgba-white-light" style="margin: 0 15%;">
+            <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+                <div class="col-md-8 col-12 mt-5 black-text">
+                    <p class="text-uppercase "  style="line-height: 1.7rem">Let's connect on <a class=" blue-text"
+                        href="https://www.linkedin.com/in/xiao-chen-aa604053/">Linkedln.</a></p>
+                </div>
+            </div>
+
+            <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+            <div class="row pb-3">
+                <div class="col-md-12">
+                    <div class="mb-5 flex-center">
+                        <a class="li-ic" href="https://www.linkedin.com/in/xiao-chen-aa604053/">
+                            <i class="fab fa-linkedin-in fa-lg blue-text mr-4"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+
+</html>
