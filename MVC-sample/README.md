@@ -1,5 +1,4 @@
 <h1 align='center'> Blog </h1>
-
 <p align='center'>
   <img src='https://img.shields.io/badge/language-python-blue?style'>
   <img src='https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white' height='20'>
