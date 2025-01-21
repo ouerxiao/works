@@ -1,5 +1,5 @@
 ##
-<h1 align="center">Static Personal Portfolio</h1>
+<h1 align="center">Profiles</h1>
 <p align="center">
   <img src='https://img.shields.io/badge/language-python-blue?style'>
   <img src='https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white' height='20'>
