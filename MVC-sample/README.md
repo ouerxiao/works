@@ -1,4 +1,4 @@
-<h1 align='center'>Dynamic Blog Web Application </h1>
+<h1 align='center'> Blog </h1>
 
 <p align='center'>
   <img src='https://img.shields.io/badge/language-python-blue?style'>
