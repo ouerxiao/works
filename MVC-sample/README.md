@@ -7,6 +7,13 @@
   <img src='https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white' height='20'>
 </p>
 
+<h2>Preview</h2>
+<p align='center'>
+  <img src='./gif/01.gif'>
+  <img src='./gif/02.gif'>
+  <img src='./gif/04.gif'>
+</p>
+
 <h2>Dependencies and Installation</h2>
 <ul>
   <li>asgiref==3.3.4</li>
@@ -31,13 +38,6 @@
   <li>tqdm==4.63.0</li>
   <li>urllib3==1.26.5</li>
 </ul>
-
-<h2>Preview</h2>
-<p align='center'>
-  <img src='./gif/01.gif'>
-  <img src='./gif/02.gif'>
-  <img src='./gif/04.gif'>
-</p>
 
 <h2>Features</h2>
 <ul>
